@@ -1,90 +1,11 @@
-
-<html>
-    <head>
-        <title>YouTube JS API</title>
-        <link rel="prefetch" href="https://imasdk.googleapis.com/js/sdkloader/ima3.js" as="script">
-        <link rel="prefetch" href="https://www.youtube.com/player_api?ima=1" as="script">
-
-        <link rel="preload" href="https://imasdk.googleapis.com/js/sdkloader/ima3.js" as="script">
-        <link rel="preload" href="https://www.youtube.com/iframe_api?ima=1" as="script">
-
-        <script src="https://s3-ap-southeast-1.amazonaws.com/tdata001.gmanetwork.com/entertainment/assets/revamp/js/libs/youtube_ima_player.js"></script>
-        <script>
-            var YT_IMA_ENABLE = "true";
-            var YT_IMA_TEST_ADS = "true";
-        </script>
-    </head>
-    <body>
-        <!-- https://services.google.com/fh/files/misc/pfp_ima_integration_developers_guide_f.pdf -->
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <p>TEST VIDEO</p>
-        <div id="player" style="width:500px;height:360px;"></div>
-
-        <script>
-            // YOUTUBE IMA INTEGRATION - using common library
-            YoutubePlayer.handlers.loadIMAScript(false);
-
-            // DATA FROM JSON
-            var videoData = {
-                "videoId": "z-KbuQnAQec",
-                "height": "360px",
-                "width": "500px",
-                "autoPlay": 0
-            };
-
-            var isAuto = (typeof videoData.autoPlay !== "undefined" && videoData.autoPlay !== '') ? videoData.autoPlay : 0;  // Override auto play for evideo
-
-            // Splitting Youtube Settings - for easier configuration
-            var playerContainer = 'player';
-
-            var thisPlayerSettings = {
-                height: videoData.height,
-                width: videoData.width,
-                playerVars: {
-                    rel: 0,
-                    wmode: 'transparent',
-                    color2: 'cfcfcf',
-                    modestbranding: 1,
-                    showinfo: 0,
-                    theme: 'light',
-                    autoplay: 0, // TODO: autoplay fix ENT-17834
-                    isAuto: isAuto
-                },
-                videoId: videoData.videoId,
-            };
-
-            var thisPlayerEvents = {
-                'onReady': function(params) {
-                    console.log('onReady', params);
-                },
-                'onStateChange': function(params) {
-                    console.log('onStateChange', params);
-                }
-            };
-
-            // Custom Ad Settings - If not test ads
-            var thisPlayerAdSettings = {
-                'adsConfig': {
-                    'adTagParameters': {
-                        'iu': '344684475/ENT_Web_YTP_Instream',
-                        'cust_params': 'kv1=x%26kv2=y',
-                        'pp': 'z'
-                    }
-                }
-            };
-
-            YoutubePlayer.prepareYoutubeSettingsSingle(
-                videoData.videoId,
-                playerContainer,
-                thisPlayerSettings,
-                thisPlayerEvents,
-                thisPlayerAdSettings
-            );
-
-            // Initialize Single Video 
-            YoutubePlayer.loadThirdPartyPlayer(function() {
-                console.log('Callback After Video Initialization');
-            });
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Vercel!</h1>
+</body>
 </html>
